@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head>
+        <title>JSF 2.2</title>
+    </h:head>
+ 
+    <h:body>
+        <h1>Hello</h1>
+        
+        <h:form>
+        
+        <p:growl id="growl" life="1000" />
+        
+	    <h:panelGrid columns="2" cellpadding="5">
+	    
+	        <h:outputText value="Name" />
+	        <h:inputText value="#{homeController.student.name}" label="Name"></h:inputText>
+	        
+	        <h:outputText value="Age " />
+	        <h:inputText value="#{homeController.student.age}" label="Age"></h:inputText>
+
+	       <p:commandButton actionListener="#{homeController.save}" value="Save" id="idSave" 
+            	update="idListStudent growl" styleClass="ui-priority-primary">
+            </p:commandButton>
+            
+	     </h:panelGrid>
+
+        </h:form>
+    </h:body>
+    
+    <p:dataTable value="#{homeController.students}" var="student" id="idListStudent">
+    
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Student Name"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{student.name}"></h:outputText>
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Student Age"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{student.age}"></h:outputText>
+		</p:column>
+		
+	</p:dataTable>
+ 
+</html>
