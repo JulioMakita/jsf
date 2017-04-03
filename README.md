@@ -1,2 +1,2 @@
 # jsf
-Jsf + Prime Faces + Hibernate Project
+Jsf + Prime Faces + Hibernate + Mysql
