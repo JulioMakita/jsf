@@ -48,8 +48,8 @@ public class HomeController implements Serializable{
 		
 		try {
 			this.studentService.save(this.student);
-			this.students.add(this.student);
 			FacesUtil.addMessage("Student Saved!");
+			initialize();
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesUtil.addMessage("Error");
@@ -59,6 +59,7 @@ public class HomeController implements Serializable{
 	public void delete(final Student student){
 		this.studentService.delete(student);
 		FacesUtil.addMessage("Delete Sucess!");
+		initialize();
 	}
 	
 	private boolean validate(){
