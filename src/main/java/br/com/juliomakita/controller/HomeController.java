@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 
 import br.com.juliomakita.model.Student;
 import br.com.juliomakita.service.StudentService;
+import br.com.juliomakita.util.FacesUtil;
 
 @ManagedBean
 @ViewScoped
@@ -24,12 +22,13 @@ public class HomeController implements Serializable{
 	
 	private Student student;
 	
-	@ManagedProperty(value="#{studentService}")
-	private StudentService studentService;
+	private StudentService studentService = new StudentService();
 	
 	@PostConstruct
 	public void initialize(){
+		
 		this.students = this.studentService.findAll();
+		
 		if(students == null){
 			this.students = new ArrayList<>();
 		}
@@ -50,32 +49,32 @@ public class HomeController implements Serializable{
 		try {
 			this.studentService.save(this.student);
 			this.students.add(this.student);
-			addMessage("Salvo com Sucesso!");
+			FacesUtil.addMessage("Student Saved!");
 		} catch (Exception e) {
 			e.printStackTrace();
-			addMessage("Erro ao Salvar");
+			FacesUtil.addMessage("Error");
 		}		
+	}
+	
+	public void delete(final Student student){
+		this.studentService.delete(student);
+		FacesUtil.addMessage("Delete Sucess!");
 	}
 	
 	private boolean validate(){
 		
 		if(student.getName() == null || "".equals(student.getName())){
-			addMessage("Digite o nome");
+			FacesUtil.addMessage("Put the name");
 			return false;
 		}
 		
 		if(student.getAge() == null){
-			addMessage("Digite a idade");
+			FacesUtil.addMessage("Put the age");
 			return false;
 		}
 		
 		return true;
 	}
-	
-    public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
 
 	public List<Student> getStudents() {
 		return students;
@@ -91,13 +90,5 @@ public class HomeController implements Serializable{
 
 	public void setStudent(Student student) {
 		this.student = student;
-	}
-
-	public StudentService getStudentService() {
-		return studentService;
-	}
-
-	public void setStudentService(StudentService studentService) {
-		this.studentService = studentService;
 	}
 }

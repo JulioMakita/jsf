@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head>
+        <title>JSF 2.2</title>
+    </h:head>
+ 
+    <h:body>
+        <h1>Edit Student</h1>
+        
+        <h:form>
+        
+        <p:growl id="growl" life="1000" />
+        
+	    <h:panelGrid columns="2" cellpadding="5">
+	    
+	        <h:outputText value="Name" />
+	        <h:inputText value="#{studentController.student.name}" label="Name"></h:inputText>
+	        
+	        <h:outputText value="Age " />
+	        <h:inputText value="#{studentController.student.age}" label="Age"></h:inputText>
+
+	       <p:commandButton actionListener="#{studentController.update}" value="Save" id="idSave" 
+            	update="growl" styleClass="ui-priority-primary">
+            </p:commandButton>
+            
+            <h:link value="Back" outcome="index" />
+            
+	     </h:panelGrid>
+
+        </h:form>
+    </h:body>
+
+</html>

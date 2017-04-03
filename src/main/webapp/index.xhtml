@@ -14,9 +14,9 @@
     <h:body>
         <h1>Hello</h1>
         
-        <h:form>
-        
         <p:growl id="growl" life="1000" />
+        
+        <h:form>
         
 	    <h:panelGrid columns="2" cellpadding="5">
 	    
@@ -35,22 +35,34 @@
         </h:form>
     </h:body>
     
-    <p:dataTable value="#{homeController.students}" var="student" id="idListStudent">
-    
-		<p:column>
-			<f:facet name="header">
-				<h:outputText value="Student Name"></h:outputText>
-			</f:facet>
-			<h:outputText value="#{student.name}"></h:outputText>
-		</p:column>
-		
-		<p:column>
-			<f:facet name="header">
-				<h:outputText value="Student Age"></h:outputText>
-			</f:facet>
-			<h:outputText value="#{student.age}"></h:outputText>
-		</p:column>
-		
-	</p:dataTable>
+    <h:panelGrid  id="idListStudent">
+	    <p:dataTable value="#{homeController.students}" var="student"  editable="true">
+	    
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Student Name"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{student.name}"></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Student Age"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{student.age}"></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<p:button icon="ui-icon-pencil" outcome="edit.xhtml">
+				    <f:param name="idStudent" value="#{student.id}" />
+				</p:button>
+				
+				<p:commandButton actionListener="#{homeController.delete(student)}" icon="ui-icon-trash"  
+	            	 update="idListStudent :growl">
+	            </p:commandButton>
+			</p:column>
+			
+		</p:dataTable>
+	</h:panelGrid>
  
 </html>

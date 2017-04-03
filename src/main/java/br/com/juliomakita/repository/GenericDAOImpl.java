@@ -41,7 +41,7 @@ public class GenericDAOImpl<T> implements IGenericDAO<T> {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public T get(Class<T> cl, Integer id) {
+	public T get(Class<T> cl, Long id) {
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		T element = (T) session.get(cl, id);

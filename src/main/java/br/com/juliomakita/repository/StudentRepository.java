@@ -3,6 +3,7 @@ package br.com.juliomakita.repository;
 import java.util.List;
 
 import javax.inject.Named;
+import javax.persistence.Query;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -22,7 +23,9 @@ public class StudentRepository extends GenericDAOImpl<Student>{
 	      Transaction tx = null;
 	      try{
 	         tx = session.beginTransaction();
-	         list =  session.createCriteria(Student.class).list();
+	         
+	         Query query = session.createQuery("from Student");
+	         list = query.getResultList();
 	         tx.commit();
 	      }catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
