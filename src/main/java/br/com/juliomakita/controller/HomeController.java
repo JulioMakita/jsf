@@ -26,9 +26,9 @@ public class HomeController implements Serializable{
 	
 	@PostConstruct
 	public void initialize(){
-		
-		this.students = this.studentService.findAll();
+
 		this.studentService = new StudentService();
+		this.students = this.studentService.findAll();
 		
 		if(students == null){
 			this.students = new ArrayList<>();
