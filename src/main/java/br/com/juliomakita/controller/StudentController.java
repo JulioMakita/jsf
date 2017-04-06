@@ -20,10 +20,13 @@ public class StudentController implements Serializable{
 
 	private Student student;
 	
-	private StudentService studentService = new StudentService();
+	private StudentService studentService;
 	
 	@PostConstruct
 	public void init(){
+
+		this.studentService = new StudentService();
+
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		Map<String, String> request = facesContext.getExternalContext().getRequestParameterMap();
 		String idStudent = request.get("idStudent");

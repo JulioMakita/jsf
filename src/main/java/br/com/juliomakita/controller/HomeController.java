@@ -22,12 +22,13 @@ public class HomeController implements Serializable{
 	
 	private Student student;
 	
-	private StudentService studentService = new StudentService();
+	private StudentService studentService;
 	
 	@PostConstruct
 	public void initialize(){
 		
 		this.students = this.studentService.findAll();
+		this.studentService = new StudentService();
 		
 		if(students == null){
 			this.students = new ArrayList<>();

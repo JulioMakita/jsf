@@ -20,24 +20,6 @@ public class GenericDAOImpl<T> implements IGenericDAO<T> {
           throw new ExceptionInInitializerError(ex); 
        }
 	}
-	
-	/*public static Session getSession() throws HibernateException {         
-		   Session sess = null;       
-		   try {         
-		       sess = sessionFactory.getCurrentSession();  
-		   } catch (org.hibernate.HibernateException he) {  
-		       sess = sessionFactory.openSession();     
-		   }             
-		   return sess;
-		} 
-
-	/*public GenericDAOImpl(Class<T> cl, SessionFactory sessionFactory) {
-		
-		this.sessionFactory = sessionFactory;
-		
-		if (sessionFactory == null)
-			throw new RuntimeException("Session factory is null!!!");
-	}*/
 
 	@Override
 	@SuppressWarnings("unchecked")
@@ -73,5 +55,4 @@ public class GenericDAOImpl<T> implements IGenericDAO<T> {
 		session.delete(object);
 		session.getTransaction().commit();
 	}
-
 }
