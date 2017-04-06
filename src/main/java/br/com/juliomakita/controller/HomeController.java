@@ -8,6 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.lang3.StringUtils;
+
 import br.com.juliomakita.model.Student;
 import br.com.juliomakita.service.StudentService;
 import br.com.juliomakita.util.FacesUtil;
@@ -21,7 +23,7 @@ public class HomeController implements Serializable{
 	private List<Student> students;
 	
 	private Student student;
-	
+
 	private StudentService studentService;
 	
 	@PostConstruct
@@ -65,7 +67,7 @@ public class HomeController implements Serializable{
 	
 	private boolean validate(){
 		
-		if(student.getName() == null || "".equals(student.getName())){
+		if(student.getName() == null || StringUtils.isBlank(student.getName())){
 			FacesUtil.addMessage("Put the name");
 			return false;
 		}

@@ -1,17 +1,13 @@
 package br.com.juliomakita.repository;
 
-import java.util.List;
-
-import javax.inject.Named;
-import javax.persistence.Query;
-
+import br.com.juliomakita.model.Student;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import br.com.juliomakita.model.Student;
+import javax.persistence.Query;
+import java.util.List;
 
-@Named
 public class StudentRepository extends GenericDAOImpl<Student>{
 	
 	

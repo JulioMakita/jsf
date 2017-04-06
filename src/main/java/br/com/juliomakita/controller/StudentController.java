@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import br.com.juliomakita.model.Student;
 import br.com.juliomakita.service.StudentService;
 import br.com.juliomakita.util.FacesUtil;
+import org.apache.commons.lang3.StringUtils;
 
 @ManagedBean
 @ViewScoped
@@ -27,11 +28,10 @@ public class StudentController implements Serializable{
 
 		this.studentService = new StudentService();
 
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		Map<String, String> request = facesContext.getExternalContext().getRequestParameterMap();
+		final Map<String, String> request = FacesUtil.getRequestParameterMap();
 		String idStudent = request.get("idStudent");
 		
-		if(idStudent != null || "".equals(idStudent)){
+		if(idStudent != null || StringUtils.isNotBlank(idStudent)){
 			this.student = studentService.findById(Long.valueOf(idStudent));
 		}
 	}
