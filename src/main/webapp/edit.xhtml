@@ -24,7 +24,7 @@
 	        <h:inputText value="#{studentController.student.age}" label="Age"></h:inputText>
 
 	       <p:commandButton actionListener="#{studentController.update}" value="Save" id="idSave" 
-            	update="growl" styleClass="ui-priority-primary">
+            	update="idListStudent growl" styleClass="ui-priority-primary" oncomplete="PF('editDialog').hide();">
             </p:commandButton>
             
 	     </h:panelGrid>
