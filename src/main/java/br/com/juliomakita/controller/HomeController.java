@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,7 +15,7 @@ import br.com.juliomakita.model.Student;
 import br.com.juliomakita.service.StudentService;
 import br.com.juliomakita.util.FacesUtil;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class HomeController implements Serializable{
 
@@ -23,13 +24,13 @@ public class HomeController implements Serializable{
 	private List<Student> students;
 	
 	private Student student;
-
+	
+	@Inject
 	private StudentService studentService;
 	
 	@PostConstruct
 	public void initialize(){
-
-		this.studentService = new StudentService();
+		
 		this.students = this.studentService.findAll();
 		
 		if(students == null){

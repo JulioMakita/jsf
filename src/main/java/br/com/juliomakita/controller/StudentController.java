@@ -1,19 +1,17 @@
 package br.com.juliomakita.controller;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.juliomakita.model.Student;
 import br.com.juliomakita.service.StudentService;
 import br.com.juliomakita.util.FacesUtil;
-import org.apache.commons.lang3.StringUtils;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class StudentController implements Serializable{
 
@@ -21,20 +19,11 @@ public class StudentController implements Serializable{
 
 	private Student student;
 	
+	@Inject
 	private StudentService studentService;
 	
 	@PostConstruct
-	public void init(){
-
-		this.studentService = new StudentService();
-
-		final Map<String, String> request = FacesUtil.getRequestParameterMap();
-		String idStudent = request.get("idStudent");
-		
-		if(idStudent != null || StringUtils.isNotBlank(idStudent)){
-			this.student = studentService.findById(Long.valueOf(idStudent));
-		}
-	}
+	public void initialize(){}
 	
 	public void update(){
 		try {

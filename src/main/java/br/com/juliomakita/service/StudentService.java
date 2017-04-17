@@ -1,18 +1,21 @@
 package br.com.juliomakita.service;
 
+import java.io.Serializable;
 import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.juliomakita.model.Student;
 import br.com.juliomakita.repository.StudentRepository;
 
+@Named
+public class StudentService implements Serializable{
 
-public class StudentService {
-
-	private StudentRepository studentRepository;
+	private static final long serialVersionUID = 1L;
 	
-	public StudentService(){
-		this.studentRepository = new StudentRepository();
-	}
+	@Inject
+	private StudentRepository studentRepository;
 	
 	public Student save(Student student) throws Exception{
 		return this.studentRepository.save(student);
