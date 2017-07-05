@@ -9,6 +9,7 @@
  
     <h:head>
         <title>JSF 2.2</title>
+        <link rel="stylesheet" href="css/style.css"></link>
     </h:head>
  
     <h:body>
@@ -20,9 +21,8 @@
 	        	</p:commandLink>
 	        </p>
         </div>
-    
-        <h1>Hello</h1>
         
+		<div class="form">
         <p:growl id="growl" life="1000" />
         
         <h:form>
@@ -47,6 +47,7 @@
 	     </h:panelGrid>
 
         </h:form>
+        </div>
 
     <p:dataTable value="#{homeController.students}" var="student" id="idListStudent">
     

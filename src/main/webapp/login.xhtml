@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head>
+        <title>Welcome to Login</title>
+      	<link rel="stylesheet" href="css/login.css"></link>
+    </h:head>
+ 
+    <h:body>
+    
+	<div class="login-page">
+		<div class="form">
+			<h:form class="register-form">
+			
+				<p:inputText type="text" placeholder="name"  value="#{userController.user.name}"/> 
+				<p:inputText type="password" placeholder="password" value="#{userController.user.password}"/> 
+				<p:inputText type="text" placeholder="email address" value="#{userController.user.email}"/>
+				<p:commandButton value="Create" icon="ui-icon-star" action="#{userController.save()}" ajax="false" />
+				<p class="message">Already registered? <a href="#">Sign In</a></p>
+			</h:form>
+			
+			<h:form class="login-form">
+				<p:messages id="messages"  autoUpdate="true" closable="true" /> 
+				<p:inputText  placeholder="username"  value="#{loginController.user.name}" /> 
+				<p:password placeholder="password" value="#{loginController.user.password}" /> 
+				<p:commandButton value="Login" icon="ui-icon-star" action="#{loginController.login()}" ajax="false" /> 
+				<p class="message">Not registered? <a href="#">Create an account</a></p>
+			</h:form>
+		</div>
+	</div>
+	
+	<script src="js/index.js"></script>
+    </h:body>
+</html> 
