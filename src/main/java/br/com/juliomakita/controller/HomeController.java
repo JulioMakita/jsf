@@ -12,6 +12,7 @@ import javax.inject.Named;
 import org.apache.commons.lang3.StringUtils;
 
 import br.com.juliomakita.model.Student;
+import br.com.juliomakita.model.User;
 import br.com.juliomakita.service.StudentService;
 import br.com.juliomakita.util.FacesUtil;
 
@@ -31,7 +32,14 @@ public class HomeController implements Serializable{
 	@PostConstruct
 	public void initialize(){
 		
-		this.students = this.studentService.findAll();
+		User userSession = FacesUtil.getUserSession();
+		
+		if(userSession == null){
+			FacesUtil.redirect("login.xhtml?faces-redirect=true");
+			return;
+		}
+		
+		this.students = this.studentService.findAllByUser(userSession);
 		
 		if(students == null){
 			this.students = new ArrayList<>();
@@ -42,6 +50,7 @@ public class HomeController implements Serializable{
 	
 	public void clear(){
 		this.student = new Student();
+		this.student.setUser(FacesUtil.getUserSession());
 	}
 	
 	public void save(){

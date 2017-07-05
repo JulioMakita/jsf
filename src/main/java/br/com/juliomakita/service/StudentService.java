@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.juliomakita.model.Student;
+import br.com.juliomakita.model.User;
 import br.com.juliomakita.repository.StudentRepository;
 
 @Named
@@ -33,7 +34,7 @@ public class StudentService implements Serializable{
 		this.studentRepository.delete(student);
 	}
 	
-	public List<Student> findAll(){
-		return this.studentRepository.findAll();
+	public List<Student> findAllByUser(final User user){
+		return this.studentRepository.findAllByUser(user);
 	}
 }

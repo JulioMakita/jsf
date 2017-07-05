@@ -1,17 +1,20 @@
 package br.com.juliomakita.repository;
 
-import br.com.juliomakita.model.Student;
+import java.util.List;
+
+import javax.persistence.Query;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.persistence.Query;
-import java.util.List;
+import br.com.juliomakita.model.Student;
+import br.com.juliomakita.model.User;
 
 public class StudentRepository extends GenericDAOImpl<Student>{
 	
 	
-	public List<Student> findAll(){
+	public List<Student> findAllByUser(final User user){
 		
 		Session session = sessionFactory.openSession();
 		List<Student> list = null;
@@ -20,7 +23,8 @@ public class StudentRepository extends GenericDAOImpl<Student>{
 	      try{
 	         tx = session.beginTransaction();
 	         
-	         Query query = session.createQuery("from Student");
+	         Query query = session.createQuery("from Student student where student.user.id=:userId ");
+	         query.setParameter("userId", user.getId());
 	         list = query.getResultList();
 	         tx.commit();
 	      }catch (HibernateException e) {

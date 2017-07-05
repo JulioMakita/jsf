@@ -12,6 +12,15 @@
     </h:head>
  
     <h:body>
+    	
+    	<div>
+	        <p>Welcome, #{loginController.userSession().name}
+	        	<p:commandLink  actionListener="#{loginController.logout()}">
+	        		<h:outputText value="Logoff" />
+	        	</p:commandLink>
+	        </p>
+        </div>
+    
         <h1>Hello</h1>
         
         <p:growl id="growl" life="1000" />
@@ -38,7 +47,6 @@
 	     </h:panelGrid>
 
         </h:form>
-    </h:body>
 
     <p:dataTable value="#{homeController.students}" var="student" id="idListStudent">
     
@@ -75,5 +83,6 @@
 	</p:dataTable>
 	
 	<ui:include src="edit.xhtml"/>
-
+	
+	</h:body>
 </html>
